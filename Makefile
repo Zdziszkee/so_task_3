@@ -7,17 +7,20 @@ DIR = `basename $(CURDIR)`
 #NAZWY PLIKOW
 NAME1 = a
 NAME2 = b
-NAME3 = c
-
+NAME3 = c1
+NAME4 = c2
 #PROGRAMY WYKONAWCZE
 EXEC1 = $(NAME1).x
 EXEC2 = $(NAME2).x
 EXEC3 = $(NAME3).x
+EXEC4 = $(NAME4).x
 
 #PLIKI PO KOMPILACJI
 OBJS1 = $(NAME1).o
 OBJS2 = $(NAME2).o
-OBJS3 = $(NAME3).o 
+OBJS3 = $(NAME3).o
+OBJS4 = $(NAME4).o 
+
 # KOMPILATOR I LINKER 
 CO = gcc
 LD = $(CO)
@@ -32,7 +35,7 @@ LFLAGS = -Wall -std=c99 -pedantic -O
 
 #REGULY ZALEZNOSCI
 .PHONY: all
-all: $(EXEC1) $(EXEC2) $(EXEC3)
+all: $(EXEC1) $(EXEC2) $(EXEC3) $(EXEC4)
 
 $(EXEC1): $(OBJS1)
 	$(LD) -o $@ $(LFLAGS) $^
@@ -40,12 +43,13 @@ $(EXEC2): $(OBJS2)
 	$(LD) -o $@ $(LFLAGS) $^
 $(EXEC3): $(OBJS3)
 	$(LD) -o $@ $(LFLAGS) $^
-
+$(EXEC4): $(OBJS4)
+	$(LD) -o $@ $(LFLAGS) $^
 #KOMPILOWANIE PROGRAMOW
 compile1: $(EXEC1) 
 compile2: $(EXEC2) 	
 compile3: $(EXEC3) 
-
+compile4: $(EXEC4) 
 #CLEANER
 .PHONY: clean tar
 clean: 

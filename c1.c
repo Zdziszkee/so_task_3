@@ -1,6 +1,9 @@
 //
 // Created by Kacper Kuchta on 4/8/23.
 //
+#define _POSIX_C_SOURCE 200112L
+#define _XOPEN_SOURCE 500
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <unistd.h>
@@ -30,7 +33,7 @@ int main(int argc, char *argv[]) {
         case 0:
             setpgid(child_PID, 0);
             signal(signalId, SIG_IGN);
-            if (execl("c2.c", "a.c", argv[2], signalId, handleType, (char *) NULL) == -1) {
+            if (execlp("./c2.x", "./c2.x", argv[1], argv[2], (char *) NULL) == -1) {
                 perror("Execl error");
                 exit(EXIT_FAILURE);
             }

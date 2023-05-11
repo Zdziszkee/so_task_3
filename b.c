@@ -1,6 +1,7 @@
 //
 // Created by Kacper Kuchta on 4/8/23.
 //
+#define _POSIX_C_SOURCE 200112L
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -17,14 +18,14 @@ int main(int argc, char** argv)
 
     int handleType = atoi(argv[2]);
     int signal = atoi(argv[1]);
-    pid_t id_p;
+    int id_p;
     switch (id_p = fork())
     {
         case -1:
             perror("Fork error");
             exit(-1);
         case 0:
-            if (execl("c2.c", "a.c", signal, handleType, (char*)NULL) == -1)
+            if (execlp("./a.x", "./a.x", argv[1], argv[2], (char*)NULL) == -1)
             {
                 perror("Execl error");
                 exit(EXIT_FAILURE);

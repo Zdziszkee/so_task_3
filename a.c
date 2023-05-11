@@ -13,7 +13,7 @@ void my_sig_handler(int signal) {
 
 int main(int argc, char **argv) {
     if (argc != 3) {
-        perror("Invalid number of arguments");
+        puts("Invalid number of arguments");
         exit(EXIT_FAILURE);
     }
     const int signalNumber = atoi(argv[1]);
